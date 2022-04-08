@@ -2,7 +2,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-import Banner from '../components/banner';
+import Banner from '../components/Banner';
+import Card from '../components/Card';
+
+import coffeeStores from '../data/coffee-stores.json';
 
 export default function Home() {
 	const handleOnBannerBtnClick = (e) => {
@@ -30,6 +33,19 @@ export default function Home() {
 						width={300}
 						height={300}
 					/>
+				</div>
+				<div className={styles.cardLayout}>
+					{coffeeStores.map((coffeeStore) => {
+						return (
+							<Card
+								className={styles.card}
+								key={coffeeStore.id}
+								name={coffeeStore.name}
+								imgUrl={coffeeStore.imgUrl}
+								href={`/coffee-stores/${coffeeStore.id}`}
+							/>
+						);
+					})}
 				</div>
 			</main>
 		</div>
